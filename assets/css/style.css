@@ -56,13 +56,12 @@ td{
 	text-align: center;
 }
 #headerTop{
-	position:absolute;
 	top: 0px;
 	left: 0px;
 	right:0px;
  	font-size: 15px;
  	width:100%;
- 	height:25px;
+ 	height:30px;
 	color:#333333;
 	background-color: #000000;
 }
@@ -70,9 +69,9 @@ td{
 #headertab{
 	color:#333333;
 	background-color: #f1f1f1;
-	padding:2px;
+	padding:5px;
 	margin-left:5px;
-	margin-top:5px;
+	margin:5px;
 	border-radius: 5px;
 	font-size:13px;
 	font-family:"monospace";
@@ -92,8 +91,7 @@ td{
 }
 	
 #SyntMeshTitle {
-	position:absolute;
-	top:45px;
+	margin-top:15px;
 	left: 15px;
 	font-size: 50px;
 	color: #000000;
@@ -101,8 +99,7 @@ td{
 }
 
 #strapline {
-	position:absolute;
-	top: 73px;
+	margin-top:15px;
 	left: 150px;
 	font-size: 17px;
 	color #FFEEDD;
@@ -117,25 +114,26 @@ a{
 #resources{
 	font-size: 17px;
 }
-#content {
-	position:absolute;
-	top: 120px;
-	left: 15px;
-	right:15px;
+#contentHeader {
+	margin-left: 15px;
+	margin-right:15px;
 	 width:100%;
 	background-color: #f1f1f1;
-	padding-bottom:50px; 
-}​
+	height:30px;
+}
+#content {
+	margin-left: 15px;
+	margin-right:15px;
+	 width:100%;
+	background-color: #f1f1f1;
+}
 #synth{
-   position:absolute;
    bottom:50px;
    height:350px;
    left:15px;
    right:15px;
 }
 #footerBottom {
-  position:absolute;
-  bottom:0px;
   background-color: #000000;
   color:white;
   text-align: center;

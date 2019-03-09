@@ -64,6 +64,11 @@
   return columnSet;
   }
   
+  var isWeb = true;
+  var isSoft = true;
+  var isHard = true;
+  var isModular = true;
+  
 
   function browse(page){
   	this.page = page
@@ -71,21 +76,66 @@
   
   function goHome(){
   	browse("home");
-  	var content = "<h3>Midi enabled Web Synthesizer</h3><span class=button onclick=startSynth()>Enable Synthesizer</span><span class=button onclick=stopSynth()>Disable Synthesizer</span><span id='synth'><tone-content><tone-piano></tone-piano><tone-synth></tone-synth></tone-content></span>";
+  	var content = "<span class=button onclick=startSynth()>Enable Synthesizer</span><span class=button onclick=stopSynth()>Disable Synthesizer</span><span id='synth'><tone-content><tone-piano></tone-piano><tone-synth></tone-synth></tone-content></span>";
+  	$('#contentHeader').html("<h3>Midi enabled Web Synthesizer</h3>" );
   	$('#content').html(content );
   }
   
   function goCompanies(){
-   $('#content').html("<h3>Companies</h3>");
-   
-   stopSynth();
-   buildHtmlTable(tabledata, '#content');
+  	stopSynth();
+    $('#contentHeader').html("<h3>Companies</h3>");
+    $('#content').html("");
+    buildHtmlTable(tabledata, '#content');
   	browse("companies");
   }
   
+var header = "<h3>Synthesizer &nbsp;&nbsp;"
+  	header += "<input type='checkbox' onclick='handleClick(this);' name='cbxHardware'  checked> hardware&nbsp;&nbsp;&nbsp;"
+  	header += "<input type='checkbox' onclick='handleClick(this);' name='cbxSoftware' checked> software&nbsp;&nbsp;&nbsp;"
+  	header += "<input type='checkbox' onclick='handleClick(this);' name='cbxWeb'  checked> web&nbsp;&nbsp;&nbsp;"
+  	header += "<input type='checkbox' onclick='handleClick(this);' name='cbxModular' checked> modular&nbsp;&nbsp;&nbsp;</h3>"
+  	
+function handleClick(cb) {
+	if(cb.name == "cbxHardware"){
+	    isHard = cb.checked;
+	}
+	if(cb.name == "cbxSoftware"){
+	    isSoft = cb.checked;
+	}
+	if(cb.name =="cbxWeb"){
+	    isWeb = cb.checked;
+	}
+	if(cb.name=="cbxModular"){
+	    isModular = cb.checked;
+	}
+	
+	var items = [];
+	
+	for (var i = 0; i < tabledataS.length; i++) {
+	
+		if(isWeb && tabledataS[i].web == true){
+			   items.push(tabledataS[i]);
+		}
+		if(isSoft && tabledataS[i].soft == true ){
+			   items.push(tabledataS[i]);
+		}
+		if(isHard && tabledataS[i].hard == true){
+			   items.push(tabledataS[i]);
+		}
+		if(isModular && tabledataS[i].modular == true){
+			   items.push(tabledataS[i]);
+		}
+    }
+	
+  	$('#content').html("");
+  	buildHtmlTable(items, '#content');
+  	browse("webSynth");
+}
+
   function goWebSynth(){
-  stopSynth();
-  	$('#content').html("<h3>Web Based Synthesizer</h3>");
+  	stopSynth();
+  	$('#contentHeader').html(header)
+  	$('#content').html("")
   	buildHtmlTable(tabledataS, '#content');
   	browse("webSynth");
   }
@@ -93,57 +143,65 @@
   function goSoftSynth(){
   stopSynth();
   	var content = "<h3>Software Synth</h3>";
-  	$('#content').html(content);
+  	$('#contentHeader').html(content);
+  	$('#content').html("" );
   	browse("softSynth");
   }
   
   function goHardSynth(){
   stopSynth();
     var content = "<h3>Hardware Synth</h3>";
-  	$('#content').html(content);
+  	$('#contentHeader').html(content);
+  	$('#content').html("" );
   	browse("hardSynth");
   }
   
   function goModSynthHard(){
   stopSynth();
   	var content = "<h3>Modular Synth Hardware</h3>";
-  	$('#content').html(content);
+  	$('#contentHeader').html(content);
+  	$('#content').html("" );
   	browse("modSynthHard");
   }
 
   function goModSynthSoft(){
   stopSynth();
   var content = "<h3>Modular Synth Software</h3>";
-  	$('#content').html(content);
+  	$('#contentHeader').html(content);
+  	$('#content').html("" );
   	browse("modSynthSoft");
   }
   
  function goVJ(){
  stopSynth();
     var content = "<h3>VJ Software</h3>";
-  	$('#content').html(content);
+  	$('#contentHeader').html(content);
+  	$('#content').html("<a href='https://vidvox.net/'>VDMX</a><br/><a href='http://www.renewedvision.com/pvp.php'>ProVideoPlayer 2</a><br/><a href='http://resolume.com/'>Resolume</a><br/><a href='http://www.madmapper.com'>MadMapper</a><br/><a href='http://www.modul8.ch'>Modul8</a><br/><br/><br/>&nbsp;" );
   	browse("vjSoft");
   }
   	
   function goTheory(){
   stopSynth();
+   var p = loadFile("add0.html")
   	var content = "<h3>Theory</h3>";
-  	$('#content').html(content);
+  	$('#contentHeader').html(content);
+  	$('#content').html(p );
   	browse("theory");
   }
   
   function goAbout(){
   stopSynth();
   	var content = "<h3>About</h3>";
-  	$('#content').html(content);
+  	$('#contentHeader').html(content);
+  	$('#content').html("All about synthesizer, software or hardware, VST, AU or web-based. Modular or even Web based Modular!<br/><br/><br/><br/>&nbsp;" );
   	browse("about");
   }
   
   function goResources(){
     stopSynth();
     var p = loadFile("resources.html")
-  	var content = "<h3>Resources</h3>" + p;
-  	$('#content').html(content);
+  	$('#contentHeader').html("<h3>Resources</h3>");
+  	$('#content').html(p);
   	browse("resources");
   }
   
