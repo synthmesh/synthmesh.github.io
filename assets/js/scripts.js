@@ -6,8 +6,11 @@
     var page = "home"
     
     function load() {
-     var linkC = "https://us-central1-absolute-pulsar-232300.cloudfunctions.net/selectCompanies"
-     var linkS = "https://us-central1-absolute-pulsar-232300.cloudfunctions.net/selectSynth"
+    // var linkC = "https://us-central1-absolute-pulsar-232300.cloudfunctions.net/selectCompanies"
+    // var linkS = "https://us-central1-absolute-pulsar-232300.cloudfunctions.net/selectSynth"
+     
+     var linkC = "data/companies.json"
+     var linkS = "data/synth.json"
      
        var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
